@@ -1,0 +1,64 @@
+# "org" ensures this Service is used with the correct Serverless Framework Access Key.
+org: ricardoteixcloud
+service: gdrive-upload
+configValidationMode: error
+
+
+provider:
+    name: aws
+    runtime: python3.12
+    profile: ricardoteixcloud
+    region: us-east-1
+    memorySize: 128
+    timeout: 30    
+    iam:
+      role:
+        statements:
+        - Effect: Allow
+          Action:
+            - logs:CreateLogGroup
+          Resource: !Sub arn:aws:logs:${AWS::Region}:${AWS::AccountId}:*
+
+        - Effect: Allow
+          Action:
+            - "logs:CreateLogStream"
+            - "logs:PutLogEvents"
+          Resource: 
+            - !Sub arn:aws:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/${self:custom.functionName}:*
+        
+custom:
+  stage: ${opt:stage, 'dev'}
+  functionName: gdrive-upload
+
+functions:
+  gdrive-upload:
+      name: ${self:custom.functionName}-${self:custom.stage}
+      handler: lambda_function.lambda_handler
+      url: true
+      tags:
+          Name: ${self:custom.functionName}-${self:custom.stage}
+          Project: "Projeto Casita"
+          Environment: ${self:custom.stage}
+          Serverless:  "true"
+      environment:
+          stage: ${self:custom.stage}
+          GOOGLE_FOLDER_ID: ${env:GOOGLE_FOLDER_ID}
+          GOOGLE_CREDENTIALS: ${env:GOOGLE_CREDENTIALS}
+          PASSWORD: ${env:PASSWORD}
+        
+plugins:
+  - serverless-dotenv-plugin
+  - serverless-python-requirements
+ 
+package: 
+  patterns:
+    - '!__pycache__'
+    - '!.serverless'
+    - '!.vscode'
+    - '!env'
+    - '!requirements.txt'
+    - '!README.md'
+    - '!node_modules'
+    - '!package*.json'
+    - '!*.zip'
+    - '!serverless.yml'
