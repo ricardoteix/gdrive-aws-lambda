@@ -1,8 +1,10 @@
+[<img src="https://em-content.zobj.net/thumbs/120/openmoji/338/flag-united-states_1f1fa-1f1f8.png" alt="us flag" width="48"/>](./README_en.md)
+
 # 📂 GDrive Upload - Lambda com Serverless
 
 Este projeto implementa uma função AWS Lambda em Python, utilizando o Serverless Framework, que permite o **upload de arquivos para o Google Drive**. A função é exposta publicamente via **Lambda Function URL** e autentica com o Google usando credenciais de serviço.
 
-O projeto tem um objetivo puramente educacional, não sendo a melhor opção para um projeto real em ambiente produtivo.
+O projeto tem um objetivo **puramente educacional**, não sendo a melhor opção para um projeto real em ambiente produtivo.
 
 ---
 
@@ -109,4 +111,4 @@ functions:
 
 * Nunca compartilhe o `.env` ou arquivos `.json` de credenciais.
 * Considere armazenar as credenciais no AWS SSM ou Secrets Manager para produção.
-* A autenticação atual (`passwd: 4321`) é apenas um placeholder e deve ser substituída por algo mais seguro e está especificado no .env como PASSWORD.
+* A autenticação atual (`passwd: 4321`) é apenas um placeholder e deve ser substituída por algo mais seguro e está especificado no `.env` como `PASSWORD`.
