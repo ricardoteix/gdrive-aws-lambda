@@ -56,6 +56,7 @@ package:
     - '!.serverless'
     - '!.vscode'
     - '!env'
+    - '!.env'
     - '!requirements.txt'
     - '!README.md'
     - '!node_modules'

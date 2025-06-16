@@ -47,6 +47,7 @@ Este projeto utiliza um arquivo `.env` para manter variáveis sensíveis fora do
 ```env
 GOOGLE_FOLDER_ID=SEU_ID_DA_PASTA_NO_DRIVE
 GOOGLE_CREDENTIALS=voce-gdrive-integration-b1234567890.json
+PASSWORD=4321
 ````
 
 > ⚠️ Copie `.env.template` para `.env` e preencha com seus valores reais antes de fazer o deploy.
